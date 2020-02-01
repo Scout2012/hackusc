@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,8 +11,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var beAngelBtn = findViewById<Button>(R.id.be_angel)
-        var needAngelBtn= findViewById<Button>(R.id.need_angel)
+        val beAngelBtn = findViewById<Button>(R.id.be_angel)
+        val needAngelBtn= findViewById<Button>(R.id.need_angel)
 
         //The question mark is part of safe calling.
         //calls method if object is not null, otherwise returns null
@@ -23,7 +22,10 @@ class MainActivity : AppCompatActivity() {
         needAngelBtn?.setOnClickListener {
             val intent = Intent(this, NearbyAngels::class.java)
             startActivity(intent)
-            Toast.makeText(this@MainActivity, R.string.app_name, Toast.LENGTH_LONG).show()
+        }
+        beAngelBtn?.setOnClickListener {
+            val intent = Intent(this, NewAngel::class.java)
+            startActivity(intent)
         }
     }
 }
