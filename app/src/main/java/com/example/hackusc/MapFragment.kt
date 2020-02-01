@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
@@ -36,6 +37,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
     private lateinit var mMap: GoogleMap
+    private lateinit var mapView : MapView
     private val TAG = "MapFragment"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,14 +61,23 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         Log.i(TAG, "onCreateView")
 
         // Inflate the layout for this fragment
+        Log.i(TAG, "onButtonPressed")
+
+
         return inflater.inflate(R.layout.fragment_map, container, false)
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        Log.i(TAG, "onButtonPressed")
+    fun onButtonPressed(uri: Uri){
 
         listener?.onFragmentInteraction(uri)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mapView = view.findViewById(R.id.map) as MapView
+        mapView.onCreate(savedInstanceState)
+        mapView.onResume()
+        mapView.getMapAsync(this)
     }
 
     override fun onAttach(context: Context) {
