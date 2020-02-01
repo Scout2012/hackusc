@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">hackusc</string>
+    <string name="check_available_area">Check For Guardians</string>
+    <string name="be_an_angel">Be An Angel</string>
 </resources>
