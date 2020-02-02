@@ -11,6 +11,12 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
+import androidx.core.app.ComponentActivity
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 class NearbyAngels : FragmentActivity(), MapFragment.OnFragmentInteractionListener{
 
@@ -27,8 +33,9 @@ class NearbyAngels : FragmentActivity(), MapFragment.OnFragmentInteractionListen
         setContentView(R.layout.nearby_angels_activity)
     }
 
-    public override fun onStart() {
+    override fun onStart() {
         super.onStart()
+
         getDeviceLocation()
     }
 
