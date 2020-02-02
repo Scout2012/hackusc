@@ -16,6 +16,13 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import java.lang.Exception
 import java.lang.IllegalStateException
+import com.google.android.gms.tasks.Task
+import androidx.annotation.NonNull
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.tasks.OnCompleteListener
+
+
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -38,20 +45,13 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private var listener: OnFragmentInteractionListener? = null
     private lateinit var mMap: GoogleMap
     private lateinit var mapView : MapView
+
     private val TAG = "MapFragment"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-//        if (savedInstanceState == null) {
-//            try{
-//                fragmentManager!!.beginTransaction().add(R.id.map, this).commit()
-//
-//            } catch(e: IllegalStateException){
-//                Log.i(TAG, "Couldn't add fragment" + e.message)
-//            }
-//        }
         Log.i("Main", "onCreate()")
+
     }
 
     override fun onCreateView(
@@ -61,13 +61,11 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         Log.i(TAG, "onCreateView")
 
         // Inflate the layout for this fragment
-        Log.i(TAG, "onButtonPressed")
-
-
         return inflater.inflate(R.layout.fragment_map, container, false)
     }
 
     fun onButtonPressed(uri: Uri){
+        Log.i(TAG, "onButtonPressed")
 
         listener?.onFragmentInteraction(uri)
     }
@@ -102,9 +100,19 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         // Add a marker in Sydney and move the camera
         val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+//        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+//        mMap.animateCamera(CameraUpdateFactory.zoomTo(mMap.maxZoomLevel))
+
+        if(!mMap.isMyLocationEnabled){
+            mMap.setMyLocationEnabled(true)
+        }
+
+        if(mMap != null) {
+            mMap.setOnMyLocationChangeListener {  }
+        }
     }
+
 
     /**
      * This interface must be implemented by activities that contain this
