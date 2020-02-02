@@ -103,6 +103,14 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 //        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
 //        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
 //        mMap.animateCamera(CameraUpdateFactory.zoomTo(mMap.maxZoomLevel))
+
+        if(!mMap.isMyLocationEnabled){
+            mMap.setMyLocationEnabled(true)
+        }
+
+        if(mMap != null) {
+            mMap.setOnMyLocationChangeListener {  }
+        }
     }
 
 
