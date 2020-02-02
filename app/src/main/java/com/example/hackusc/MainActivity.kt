@@ -5,12 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var checkButton: Button
+    lateinit var dropButton: Button
+    lateinit var findButton: Button
     lateinit var name : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +21,8 @@ class MainActivity : AppCompatActivity() {
         val beAngelBtn = findViewById<Button>(R.id.be_angel)
         val needAngelBtn= findViewById<Button>(R.id.need_angel)
 
-        checkButton = findViewById<Button>(R.id.need_angel)
+        dropButton = findViewById<Button>(R.id.need_angel)
+        findButton = findViewById<Button>(R.id.be_angel)
         //The question mark is part of safe calling.
         //calls method if object is not null, otherwise returns null
         //essentially, it is doing NPE handling for us :D
@@ -51,6 +52,12 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, "Drop Saved Succesfully", Toast.LENGTH_LONG)
                 .show()
         }
+
+
+    }
+
+    private fun findAngelDrop(){
+
 
 
     }
